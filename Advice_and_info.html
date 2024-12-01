@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mental Health Survey Dashboard</title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+        }
+        .container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-around;
+        }
+        .dialog-box {
+            border: 1px solid #ccc;
+            padding: 15px;
+            margin: 10px;
+            width: 30%;
+            background-color: #f9f9f9;
+            border-radius: 5px;
+        }
+        canvas {
+            max-width: 100%;
+            margin: 20px auto;
+            width: 300px;
+            height: 300px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Mental Health Survey Dashboard</h1>
+
+    <div class="container">
+        <!-- Dialog Boxes -->
+        <div class="dialog-box">
+            <h3>General Information</h3>
+            <p>This dataset contains information about students' demographics, academic details, and extracurricular activities.</p>
+        </div>
+
+        <div class="dialog-box">
+            <h3>Key Highlights</h3>
+            <p>Includes data on age, university, degree, GPA ranges, and residential status of students.</p>
+        </div>
+
+        <div class="dialog-box">
+            <h3>Insights</h3>
+            <p>The data reveals patterns in academic performance, university preferences, and student life.</p>
+        </div>
+    </div>
+
+    <!-- Charts -->
+    <div class="container">
+        <!-- Pie Chart -->
+        <canvas id="pieChart"></canvas>
+
+        <!-- Bar Chart -->
+        <canvas id="barChart"></canvas>
+
+        <!-- Scatter Plot -->
+        <canvas id="scatterPlot"></canvas>
+    </div>
+
+    <script>
+        // Pie Chart
+        const pieCtx = document.getElementById('pieChart').getContext('2d');
+        new Chart(pieCtx, {
+            type: 'pie',
+            data: {
+                labels: ['Male', 'Female'],
+                datasets: [{
+                    label: 'Gender Distribution',
+                    data: [40, 20], // Example data
+                    backgroundColor: ['#36a2eb', '#ff6384'],
+                }]
+            },
+        });
+
+        // Bar Chart
+        const barCtx = document.getElementById('barChart').getContext('2d');
+        new Chart(barCtx, {
+            type: 'bar',
+            data: {
+                labels: ['Undergraduate', 'Postgraduate'],
+                datasets: [{
+                    label: 'Degree Level',
+                    data: [50, 10], // Example data
+                    backgroundColor: ['#4caf50', '#ff9800'],
+                }]
+            },
+            options: {
+                responsive: true,
+                scales: {
+                    y: {
+                        beginAtZero: true
+                    }
+                }
+            }
+        });
+
+        // Scatter Plot
+        const scatterCtx = document.getElementById('scatterPlot').getContext('2d');
+        new Chart(scatterCtx, {
+            type: 'scatter',
+            data: {
+                datasets: [{
+                    label: 'Age vs GPA',
+                    data: [
+                        {x: 20, y: 3.5},
+                        {x: 22, y: 3.0},
+                        {x: 19, y: 2.5},
+                        {x: 21, y: 3.8}
+                    ], // Example data
+                    backgroundColor: '#673ab7'
+                }]
+            },
+            options: {
+                responsive: true,
+                scales: {
+                    x: {
+                        title: {
+                            display: true,
+                            text: 'Age'
+                        }
+                    },
+                    y: {
+                        title: {
+                            display: true,
+                            text: 'GPA'
+                        }
+                    }
+                }
+            }
+        });
+    </script>
+</body>
+</html>
